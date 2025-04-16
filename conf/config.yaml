@@ -1,0 +1,68 @@
+rpc_port: 5088
+http_port: 8088
+
+sqldb:
+  dbtype: mysql
+  username:
+  password:
+  protocol: tcp
+  addr:
+#  addr: mysql-default-proxy.component:3306
+  dbname: bi_db
+  param: parseTime=true
+  verbose: true
+  create_db: true
+
+
+redis:
+  type: single
+  single:
+    addr:
+    password:
+    db: 9
+  
+http:
+  alert:
+    host: https://qyapi.weixin.qq.com
+    timeout: 30
+    insecureSkipVerify: true
+  
+  dcp:
+    timeout: 30
+    insecureSkipVerify: true
+  
+  sensecore:
+    timeout: 30
+    insecureSkipVerify: true
+
+  datapro-meta:
+    host:
+    timeout: 30
+    insecureSkipVerify: true
+
+  ones:
+    host:
+    timeout: 30
+    insecureSkipVerify: true
+
+
+monitor:
+  interval: 3600
+  cache_size: 10
+
+simulation:
+  sim_url:
+
+alert:
+  path: /cgi-bin/webhook/send
+  key: 5014f73a-0df4-4fef-a3ed-a68931ffccd9
+  templates: ["服务：<font color=\"warning\">%s</font>出现故障，请相关同事注意。\n
+      >服务模块:<font color=\"comment\">%s</font> \n
+      >发生时间:<font color=\"comment\">%s</font> \n
+      >错误详情:<font color=\"comment\">%s</font> \n", 
+      "导入数据文件：<font color=\"warning\">%s</font>错误，请相关同事注意。\n
+      >文件名:<font color=\"comment\">%s</font> \n
+      >发生时间:<font color=\"comment\">%s</font> \n
+      >错误详情:<font color=\"comment\">%s</font> \n"] 
+
+  

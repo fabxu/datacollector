@@ -1,0 +1,14 @@
+include:
+  - project: 'apcloud/library/common-ci'
+    ref: main
+    file:
+      # - '.scan.yml'
+      - '.build-go.yml'
+      - '.build-helm.yml'
+      - '.deploy-helm.yml'
+
+stages:
+  - prepare
+  - image
+  - helm
+  - deploy
