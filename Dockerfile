@@ -1,6 +1,6 @@
 ARG ARCHITECTURE
 
-FROM registry.sensetime.com/beacon/ci/golang:1.22.2-alpine3.19-${ARCHITECTURE} AS builder
+FROM registry.cloud.com/beacon/ci/golang:1.22.2-alpine3.19-${ARCHITECTURE} AS builder
 
 ARG GIT_BRANCH
 ARG GIT_HASH
@@ -13,7 +13,7 @@ COPY . .
 
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=${ARCHITECTURE} go build -ldflags "-X \"main.GitBranch=${GIT_BRANCH}\" -X \"main.GitHash=${GIT_HASH}\" -X \"main.BuildTS=${BUILD_TS}\"" -o ./bin/ ./...
 
-FROM registry.sensetime.com/beacon/ci/alpine:3.19-v2-aws-${ARCHITECTURE}
+FROM registry.cloud.com/beacon/ci/alpine:3.19-v2-aws-${ARCHITECTURE}
 
 USER root
 

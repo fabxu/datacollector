@@ -5,12 +5,12 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/lib/constant"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/model/dao"
-	cmclient "gitlab.senseauto.com/apcloud/library/common-go/client"
-	cmhttp "gitlab.senseauto.com/apcloud/library/common-go/client/http"
-	cmconfig "gitlab.senseauto.com/apcloud/library/common-go/config"
-	cmlog "gitlab.senseauto.com/apcloud/library/common-go/log"
+	"github.com/fabxu/datacollector-service/internal/lib/constant"
+	"github.com/fabxu/datacollector-service/internal/model/dao"
+	cmclient "github.com/fabxu/lib/client"
+	cmhttp "github.com/fabxu/lib/client/http"
+	cmconfig "github.com/fabxu/lib/config"
+	cmlog "github.com/fabxu/log"
 )
 
 const (

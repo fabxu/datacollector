@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os/exec"
 
-	cmlog "gitlab.senseauto.com/apcloud/library/common-go/log"
+	cmlog "github.com/fabxu/log"
 )
 
 const (
@@ -20,7 +20,6 @@ type AOSSStorageClient struct {
 }
 
 func (c *AOSSStorageClient) Download(bucket string, remoteFileSrc string, localFilePath string) error {
-	// example: "aws s3 cp s3://aoss-bi-data/infra/infra_dev_test/test1.txt . --endpoint-url=http://aoss-v2.st-sh-01.sensecoreapi-oss.cn"
 	logger := cmlog.Extract(c.Cxt)
 	s3FileBasePath := fmt.Sprintf(s3BasePathTemplate, bucket)
 	downloadCmd := fmt.Sprintf(downloadCmdStub, s3FileBasePath+remoteFileSrc, localFilePath, c.EndPoint)
@@ -36,7 +35,6 @@ func (c *AOSSStorageClient) Download(bucket string, remoteFileSrc string, localF
 }
 
 func (c *AOSSStorageClient) List(bucket string, remoteFileSrc string) ([]byte, error) {
-	// example: "aws s3 ls s3://aoss-bi-data/infra/infra_dev_test/ --endpoint-url=http://aoss-v2.st-sh-01.sensecoreapi-oss.cn"
 	logger := cmlog.Extract(c.Cxt)
 	s3FileBasePath := fmt.Sprintf(s3BasePathTemplate, bucket)
 	listCmd := fmt.Sprintf(listCmdStub, s3FileBasePath+remoteFileSrc, c.EndPoint)

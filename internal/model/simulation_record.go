@@ -3,8 +3,8 @@ package model
 import (
 	"context"
 
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/model/dao"
-	cmclient "gitlab.senseauto.com/apcloud/library/common-go/client"
+	"github.com/fabxu/datacollector-service/internal/model/dao"
+	cmclient "github.com/fabxu/lib/client"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )

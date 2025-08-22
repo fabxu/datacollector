@@ -6,12 +6,12 @@ import (
 	"errors"
 	"time"
 
+	"github.com/fabxu/datacollector-service/internal/lib/constant"
+	cmclient "github.com/fabxu/lib/client"
+	cmredis "github.com/fabxu/lib/client/redis"
+	cmconfig "github.com/fabxu/lib/config"
+	cmlog "github.com/fabxu/log"
 	"github.com/go-redis/redis/v8"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/lib/constant"
-	cmclient "gitlab.senseauto.com/apcloud/library/common-go/client"
-	cmredis "gitlab.senseauto.com/apcloud/library/common-go/client/redis"
-	cmconfig "gitlab.senseauto.com/apcloud/library/common-go/config"
-	cmlog "gitlab.senseauto.com/apcloud/library/common-go/log"
 )
 
 type retryMsgType int

@@ -5,7 +5,7 @@ import (
 	"sync"
 	"time"
 
-	cmlog "gitlab.senseauto.com/apcloud/library/common-go/log"
+	cmlog "github.com/fabxu/log"
 )
 
 func DeferRecover(ctx context.Context) {

@@ -3,12 +3,12 @@ package main
 import (
 	"context"
 
+	"github.com/fabxu/datacollector-service/internal/lib/constant"
+	cmclient "github.com/fabxu/lib/client"
+	cmsql "github.com/fabxu/lib/client/sqldb"
+	cmconfig "github.com/fabxu/lib/config"
+	cmlog "github.com/fabxu/log"
 	"github.com/spf13/cobra"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/lib/constant"
-	cmclient "gitlab.senseauto.com/apcloud/library/common-go/client"
-	cmsql "gitlab.senseauto.com/apcloud/library/common-go/client/sqldb"
-	cmconfig "gitlab.senseauto.com/apcloud/library/common-go/config"
-	cmlog "gitlab.senseauto.com/apcloud/library/common-go/log"
 )
 
 func attachInitCommand(rootCmd *cobra.Command) {
@@ -46,5 +46,4 @@ func initSQLDB(ctx context.Context, cmd *cobra.Command) {
 	cmclient.SQLDB.Global(ctx, sqldbCfg)
 
 	RegisterService(ctx)
-	AutoMigrate(ctx, cmclient.SQLDB)
 }

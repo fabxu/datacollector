@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/service/monitor"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/service/repository"
+	"github.com/fabxu/datacollector-service/internal/service/monitor"
+	"github.com/fabxu/datacollector-service/internal/service/repository"
 )
 
 type Collector interface {

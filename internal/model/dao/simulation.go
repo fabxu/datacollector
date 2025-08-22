@@ -1,6 +1,6 @@
 package dao
 
-import "gitlab.senseauto.com/apcloud/app/datacollector-service/internal/lib/constant"
+import "github.com/fabxu/datacollector-service/internal/lib/constant"
 
 type SimulationRecord struct {
 	ID                uint64  `json:"id" gorm:"primaryKey;type:bigint;comment:编号"`

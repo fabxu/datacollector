@@ -22,7 +22,7 @@ const (
 	CfgRedisDB         = 9
 	CfgOSS             = "oss"
 	CfgDCP             = "DCP"
-	CfgSenseCore       = "sensecore"
+	CfgCloud           = "cloud"
 	CfgMonitor         = "monitor"
 	CfgAlert           = "alert"
 	CfgInfraMonth      = "InfraMonth"
@@ -32,19 +32,19 @@ const (
 	CfgSimulation      = "simulation"
 	CfgOnes            = "ones"
 
-	CfgHTTPAlert                  = "http.alert"
-	CfgHTTPAlertKey               = "alert"
-	CfgHTTPSenseCoreManagementKey = "management_url"
-	CfgHTTPSenseCoreAFSKey        = "afs_url"
-	CfgHTTPSenseCoreACSKey        = "acs_url"
-	CfgHTTPSenseCoreAOSSKey       = "aoss_url"
-	CfgHTTPSenseCoreIAMKey        = "iam_url"
-	CfgHTTPDCP                    = "http.DCP"
-	CfgHTTPSenseCore              = "http.sensecore"
-	CfgHTTPDataProMeta            = "http.datapro-meta"
-	CfgGRPCFieldTest              = "grpc.fieldtest"
-	CfgHTTPOnes                   = "http.ones"
-	CfgSyncDBTruthValue           = "syncdb.truthvalue"
+	CfgHTTPAlert              = "http.alert"
+	CfgHTTPAlertKey           = "alert"
+	CfgHTTPCloudManagementKey = "management_url"
+	CfgHTTPCloudAFSKey        = "afs_url"
+	CfgHTTPCloudACSKey        = "acs_url"
+	CfgHTTPCloudAOSSKey       = "aoss_url"
+	CfgHTTPCloudIAMKey        = "iam_url"
+	CfgHTTPDCP                = "http.DCP"
+	CfgHTTPCloud              = "http.cloud"
+	CfgHTTPDataProMeta        = "http.datapro-meta"
+	CfgGRPCFieldTest          = "grpc.fieldtest"
+	CfgHTTPOnes               = "http.ones"
+	CfgSyncDBTruthValue       = "syncdb.truthvalue"
 )
 
 const (
@@ -53,23 +53,23 @@ const (
 )
 
 const (
-	ClusterTypeNone      = -1
-	ClusterTypeDcp       = 0
-	ClusterTypeSensecore = 1
+	ClusterTypeNone  = -1
+	ClusterTypeDcp   = 0
+	ClusterTypeCloud = 1
 
 	KeyURL = "url"
 
 	ServiceDcpExporter = "dcpExporter"
 
-	IDCollectorGpu              = "GPUCollector"
-	IDCollectorGpuRange         = "GPURangeCollector"
-	IDCollectorDcpStorage       = "DCPStorageDailyCollector"
-	IDCollectorSensecoreStorage = "SensecoreStorageCollector"
-	IDCollectorInfraMonthBill   = "InfraMonthBillCollector"
-	IDCollectorSimulation       = "SimulationCollector"
-	IDCollectorFieldTest        = "FieldTestCollector"
-	IDCollectorOnes             = "OnesCollector"
-	IDCollectorTruthValue       = "TruthValueCollector"
+	IDCollectorGpu            = "GPUCollector"
+	IDCollectorGpuRange       = "GPURangeCollector"
+	IDCollectorDcpStorage     = "DCPStorageDailyCollector"
+	IDCollectorCloudStorage   = "CloudStorageCollector"
+	IDCollectorInfraMonthBill = "InfraMonthBillCollector"
+	IDCollectorSimulation     = "SimulationCollector"
+	IDCollectorFieldTest      = "FieldTestCollector"
+	IDCollectorOnes           = "OnesCollector"
+	IDCollectorTruthValue     = "TruthValueCollector"
 
 	FmtAlertPlus = ">%s:<font color=\"comment\">%s</font>"
 
@@ -88,7 +88,7 @@ const (
 	MethodPost = "POST"
 
 	FmtInfraMonth         = "【账单沙盘-V13\\.0】大装置资源账单管理_%s.xlsx"
-	FmtIagStorage         = "senseauto_storage_using_report_%s.xlsx"
+	FmtIagStorage         = "cloud_storage_using_report_%s.xlsx"
 	FmtInfraResourcePrice = "基础设置资源单价_%s.xlsx"
 
 	DcpDailyStorageFile = 0

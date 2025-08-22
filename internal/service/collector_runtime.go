@@ -6,12 +6,12 @@ import (
 	"sync"
 	"time"
 
+	"github.com/fabxu/datacollector-service/internal/lib/constant"
+	"github.com/fabxu/datacollector-service/internal/model/dao"
+	"github.com/fabxu/datacollector-service/internal/service/repository"
+	cmhttp "github.com/fabxu/lib/client/http"
+	cmlog "github.com/fabxu/log"
 	"github.com/robfig/cron/v3"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/lib/constant"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/model/dao"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/service/repository"
-	cmhttp "gitlab.senseauto.com/apcloud/library/common-go/client/http"
-	cmlog "gitlab.senseauto.com/apcloud/library/common-go/log"
 )
 
 const (

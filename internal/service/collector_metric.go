@@ -4,13 +4,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/pkg/errors"
-	auth_filter "gitlab.senseauto.com/apcloud/library/common-go/auth/filter"
-
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/model"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/model/dao"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/service/repository"
-	cmlog "gitlab.senseauto.com/apcloud/library/common-go/log"
+	"github.com/fabxu/datacollector-service/internal/model/dao"
+	"github.com/fabxu/datacollector-service/internal/service/repository"
+	cmlog "github.com/fabxu/log"
 )
 
 type ContextKeyType string
@@ -87,18 +83,6 @@ func GetMetricInfo(ctx context.Context) *CollectorMetricInfo {
 
 func CollectorMetricInit(ctx context.Context, coreDB *repository.CoreDB, defaultCollector Collector, metricMethod, metricType string, tt time.Time) (context.Context, error) {
 	// 检查是否有正在执行的collector
-	syncInfoService := coreDB.MetricInfo
-	collectorID := defaultCollector.GetID()
-	filter := model.MetricInfoFilter{
-		CollectorID: &auth_filter.StringField{Eq: &collectorID}}
-	record, err := syncInfoService.FindRecordByCreateTime(filter)
-	if err != nil {
-		return ctx, err
-	}
-	if record.Status == MetricCollectorStatusUndone {
-		return ctx, errors.New("current collector not end!")
-	}
-
 	ctx = WithMetricCollectorAndMethod(ctx, defaultCollector, metricMethod)
 	ctx = CollectorMonitorReport(ctx, coreDB, metricType, int64(time.Since(tt)), nil)
 	return ctx, nil
@@ -148,21 +132,7 @@ func doCollectorMonitorReport(ctx context.Context, coreDB *repository.CoreDB, in
 		}
 	}
 	if metricType == MetricTypeRuntimeNum {
-		collectorID := info.CollectorID
-		filter := model.MetricInfoFilter{
-			CollectorID: &auth_filter.StringField{Eq: &collectorID}}
-		record, err := syncInfoService.FindRecordByCreateTime(filter)
-		if err != nil {
-			return ctx, err
-		}
-		if record.ID != 0 {
-			record.RuntimeNum = int32(metricValue)
-			if info.Err != nil {
-				extraInfo := info.Err.Error()
-				record.ExtraInfo += extraInfo
-			}
-			_ = syncInfoService.UpdateRecordByLatestID(record)
-		}
+
 	}
 	return ctx, err
 }

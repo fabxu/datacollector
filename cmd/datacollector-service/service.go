@@ -3,14 +3,13 @@ package main
 import (
 	"context"
 
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/model"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/service"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/service/monitor"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/service/repository"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/service/simulation"
-	"gitlab.senseauto.com/apcloud/library/common-go/client/sqldb"
-	cmlog "gitlab.senseauto.com/apcloud/library/common-go/log"
-	dc_api "gitlab.senseauto.com/apcloud/library/proto/api/datacollector-service/v1"
+	"github.com/fabxu/datacollector-service/internal/model"
+	"github.com/fabxu/datacollector-service/internal/service"
+	"github.com/fabxu/datacollector-service/internal/service/monitor"
+	"github.com/fabxu/datacollector-service/internal/service/repository"
+	"github.com/fabxu/datacollector-service/internal/service/simulation"
+	"github.com/fabxu/lib/client/sqldb"
+	cmlog "github.com/fabxu/log"
 )
 
 var serviceInstance = service.CollectorService{}

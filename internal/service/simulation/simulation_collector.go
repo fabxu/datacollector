@@ -7,21 +7,16 @@ import (
 	"fmt"
 	"time"
 
-	auth_filter "gitlab.senseauto.com/apcloud/library/common-go/auth/filter"
-
-	cmlib "gitlab.senseauto.com/apcloud/library/common-go/lib"
-
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/lib/constant"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/model"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/model/dao"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/service"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/service/monitor"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/service/util"
-	cmconfig "gitlab.senseauto.com/apcloud/library/common-go/config"
-	cmlog "gitlab.senseauto.com/apcloud/library/common-go/log"
+	"github.com/fabxu/datacollector-service/internal/lib/constant"
+	"github.com/fabxu/datacollector-service/internal/model"
+	"github.com/fabxu/datacollector-service/internal/model/dao"
+	"github.com/fabxu/datacollector-service/internal/service"
+	"github.com/fabxu/datacollector-service/internal/service/monitor"
+	"github.com/fabxu/datacollector-service/internal/service/util"
+	cmconfig "github.com/fabxu/lib/config"
+	cmlog "github.com/fabxu/log"
 )
 
-var defaultStartTime = time.Date(2023, 1, 1, 0, 0, 0, 0, cmlib.GetCSTLocation())
 var JobStatusMap = map[constant.WorkflowJobStatus]int{
 	constant.JobFinished:   0,
 	constant.JobUnfinished: 1,
@@ -87,9 +82,6 @@ func (s *SimulationCollector) getSimRecord(ctx context.Context, startTime int64,
 			SpaceTypeCategory: record.DataOrigin,
 			TotalDistance:     record.TotalDistance,
 			Status:            status,
-			CreateTime:        util.TimeParse(record.CreateTime),
-			StartTime:         util.TimeParse(record.StartTime),
-			EndTime:           util.TimeParse(record.EndTime),
 			Creator:           record.Creator,
 		}
 		simRecords = append(simRecords, tmpRecord)
@@ -145,45 +137,8 @@ func (s *SimulationCollector) Init(ctx *service.CollectorContext) error {
 
 // process implements Collector.
 func (s *SimulationCollector) Process(ctx context.Context, msgType int32, arg string) (interface{}, *monitor.MonitorMsg, error) {
-	var msg *monitor.MonitorMsg = nil
-	var err error
-	collectorID := s.GetID()
-	currentTime := time.Now()
-	current := cmlib.ToMilliSeconds(currentTime)
-	filter := model.SyncInfoFilter{
-		CollectorID: &auth_filter.StringField{Eq: &collectorID}}
-	holder := dataHolder{}
-	if holder.syncInfo, err = s.Repository.DB.SyncInfo.FindRecordByID(filter); err == nil {
-		if holder.syncInfo.CreateAt == 0 {
-			holder.syncInfo.CollectorID = s.GetID()
-			holder.syncInfo.CreateAt = current
-		}
-		lastUpdateTime := holder.syncInfo.LastSyncTime
-		if lastUpdateTime == 0 {
-			lastUpdateTime = cmlib.ToMilliSeconds(defaultStartTime)
-		}
-		holder.simData, err = s.getSimRecord(ctx, lastUpdateTime, current)
-	}
 
-	if err != nil {
-		alertMsg := make([]*monitor.AlertMsg, 1)
-		alertMsg[0] = &monitor.AlertMsg{
-			AlertType: monitor.AlertService,
-			Service:   s.GetID(),
-			Module:    AlertModuleGetSimulation,
-			Time:      currentTime.Format(constant.FullTimeTemplate),
-			Msg:       err.Error(),
-		}
-		msg = &monitor.MonitorMsg{
-			Retry:    false,
-			Alert:    true,
-			AlertMsg: alertMsg,
-		}
-	} else {
-		holder.syncInfo.LastSyncTime = current
-	}
-
-	return &holder, msg, err
+	return nil, nil, nil
 }
 
 // save implements Collector.

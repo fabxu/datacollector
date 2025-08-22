@@ -31,7 +31,7 @@ http:
     timeout: 30
     insecureSkipVerify: true
   
-  sensecore:
+  cloud:
     timeout: 30
     insecureSkipVerify: true
 

@@ -6,17 +6,16 @@ import (
 	"reflect"
 	"time"
 
+	"github.com/fabxu/datacollector-service/internal/lib/constant"
+	"github.com/fabxu/datacollector-service/internal/service/util"
+	cmhttp "github.com/fabxu/lib/client/http"
 	"github.com/robfig/cron/v3"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/lib/constant"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/service/util"
-	cmhttp "gitlab.senseauto.com/apcloud/library/common-go/client/http"
 
 	"github.com/golang/protobuf/ptypes/empty"
 
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/service/monitor"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/service/repository"
-	cmlog "gitlab.senseauto.com/apcloud/library/common-go/log"
-	dc_api "gitlab.senseauto.com/apcloud/library/proto/api/datacollector-service/v1"
+	"github.com/fabxu/datacollector-service/internal/service/monitor"
+	"github.com/fabxu/datacollector-service/internal/service/repository"
+	cmlog "github.com/fabxu/log"
 )
 
 type CollectorService struct {

@@ -1,7 +1,7 @@
 package model
 
 import (
-	"gitlab.senseauto.com/apcloud/library/common-go/client/sqldb"
+	"github.com/fabxu/lib/client/sqldb"
 )
 
 func AutoMigrate(client *sqldb.Client, tables []interface{}) {

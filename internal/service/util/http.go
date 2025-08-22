@@ -9,8 +9,7 @@ import (
 	"os"
 	"time"
 
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/lib/constant"
-	cmerror "gitlab.senseauto.com/apcloud/library/common-go/error"
+	"github.com/fabxu/datacollector-service/internal/lib/constant"
 )
 
 func GetProjectCollectorURL() string {
@@ -30,18 +29,13 @@ func DoRequest(method, url string, data []byte, headers map[string]string) (stri
 
 	req, err := http.NewRequestWithContext(ctx, method, url, bytes.NewBuffer(data))
 
-	if err != nil {
-		e = cmerror.BadRequest.WithError(err)
-	}
-
 	for k, v := range headers {
 		req.Header.Add(k, v)
 	}
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
-		e = cmerror.BadRequest.WithError(err)
-		return "", e
+		return "", err
 	}
 	defer resp.Body.Close()
 

@@ -3,10 +3,10 @@ package repository
 import (
 	"context"
 
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/lib/constant"
-	cmsql "gitlab.senseauto.com/apcloud/library/common-go/client/sqldb"
-	cmconfig "gitlab.senseauto.com/apcloud/library/common-go/config"
-	cmlog "gitlab.senseauto.com/apcloud/library/common-go/log"
+	"github.com/fabxu/datacollector-service/internal/lib/constant"
+	cmsql "github.com/fabxu/lib/client/sqldb"
+	cmconfig "github.com/fabxu/lib/config"
+	cmlog "github.com/fabxu/log"
 )
 
 const (

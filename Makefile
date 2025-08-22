@@ -5,7 +5,7 @@ BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 HASH := $(shell git rev-parse HEAD)
 BUILD_TS := $(shell date +'%Y-%m-%d %H:%M:%S')
 
-REGISTRY_ADDRESS ?= registry.sensetime.com
+REGISTRY_ADDRESS ?= registry.cloud.com
 REGISTRY_GROUP ?= beacon
 SHORT_HASH := $(shell git rev-parse --short=8 HEAD)
 IMAGE_VERSION := $(BRANCH)-$(SHORT_HASH)
@@ -62,7 +62,7 @@ helm-dep-build: helm-gen
 	docker run -it --rm \
 		-v $(CURRENT_DIR)/deploy/helm_generated:/data/helm \
 		-v $(COMMON_CHART_DIR):/data/common \
-		registry.sensetime.com/beacon/ci/deploy:2.0.0 \
+		registry.cloud.com/beacon/ci/deploy:2.0.0 \
 		bash -c 'cd /data/helm; for chart in ./*; do helm dependency build $$chart; done;'
 
 .PHONY: helm-install
@@ -72,7 +72,7 @@ helm-install: helm-clean helm-dep-build
 		-v $(CURRENT_DIR)/deploy:/data/deploy \
 		-v $(CURRENT_DIR)/deploy/test:/data/test \
 		-v $(HOME)/.kube:/root/.kube \
-		registry.sensetime.com/beacon/ci/deploy:2.0.0 \
+		registry.cloud.com/beacon/ci/deploy:2.0.0 \
 		bash -c 'cd /data/deploy/helm_generated; for chart in *; do helm template --dry-run --debug $$chart ./$$chart > /data/test/$$chart-install.yml; done;'
 
 .PHONY: debug

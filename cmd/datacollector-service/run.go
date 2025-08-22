@@ -3,15 +3,13 @@ package main
 import (
 	"context"
 
+	"github.com/fabxu/datacollector-service/internal/lib/constant"
+	cmclient "github.com/fabxu/lib/client"
+	cmsql "github.com/fabxu/lib/client/sqldb"
+	cmconfig "github.com/fabxu/lib/config"
+	cmlog "github.com/fabxu/log"
+	cmserver "github.com/fabxu/server"
 	"github.com/spf13/cobra"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/lib/constant"
-	cmclient "gitlab.senseauto.com/apcloud/library/common-go/client"
-	cmsql "gitlab.senseauto.com/apcloud/library/common-go/client/sqldb"
-	cmconfig "gitlab.senseauto.com/apcloud/library/common-go/config"
-	cmi18n "gitlab.senseauto.com/apcloud/library/common-go/lib/i18n"
-	cmlog "gitlab.senseauto.com/apcloud/library/common-go/log"
-	cmserver "gitlab.senseauto.com/apcloud/library/common-go/server"
-	datacollector_api "gitlab.senseauto.com/apcloud/library/proto/api/datacollector-service/v1"
 )
 
 func attachRunCommand(rootCmd *cobra.Command) {
@@ -72,9 +70,6 @@ func attachRunCommand(rootCmd *cobra.Command) {
 
 func setups(ctx context.Context) {
 	logger := cmlog.Extract(ctx)
-
-	cmi18n.InitI18nByFiles([]string{constant.I18nEnFilePath, constant.I18nZhFilePath})
-
 	// 初始化sqldb
 	sqldbCfg := cmsql.Config{}
 	if err := cmconfig.Global().UnmarshalKey(constant.CfgSQLDB, &sqldbCfg); err != nil {

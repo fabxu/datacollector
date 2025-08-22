@@ -3,9 +3,9 @@ package repository
 import (
 	"context"
 
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/model"
-	"gitlab.senseauto.com/apcloud/app/datacollector-service/internal/model/dao"
-	cmsql "gitlab.senseauto.com/apcloud/library/common-go/client/sqldb"
+	"github.com/fabxu/datacollector-service/internal/model"
+	"github.com/fabxu/datacollector-service/internal/model/dao"
+	cmsql "github.com/fabxu/lib/client/sqldb"
 )
 
 type CoreDB struct {
